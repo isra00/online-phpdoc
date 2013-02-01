@@ -13,11 +13,34 @@ define('MYSQL_USER', getenv('MYSQL_USER'));
 define('MYSQL_PASSWORD', getenv('MYSQL_PASSWORD'));
 define('MYSQL_DATABASE', getenv('MYSQL_DATABASE'));
 
+/**
+ * Session handling
+ */
+
 @session_start();
+
+if ($_SERVER['SCRIPT_NAME'] != 'gh-login.php') {
+  if (empty($_SESSION['github']['access_token'])) {
+    header('Location: gh-login.php');
+    die;
+  }
+}
+
+//User GitHub data is stored in Session for better performance
+if (!isset($_SESSION['github']['user_data']))
+{
+  $_SESSION['github']['user_data'] = github_api('user');
+}
+
+
+/**
+ * Database init
+ */
 
 $db_conn = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
 
 require 'db.php';
+
 
 /*** BEGIN SHAMEFUL FUNCTIONS THAT NEED TO BE REFACTORED AND MOVED FROM HERE **/
 

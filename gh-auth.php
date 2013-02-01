@@ -12,8 +12,6 @@ if (!isset($_GET['code'])) {
   //Page has been called directly or without the required params. Throw error or redirect.
 }
 
-/** @todo Use github_api() */
-
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'https://github.com/login/oauth/access_token');
 curl_setopt($ch, CURLOPT_POST, true);
