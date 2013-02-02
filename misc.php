@@ -11,7 +11,7 @@
  * @param array $post_fields POST fields to send
  * @return object The HTTP status code (status) and response (response)
  */
-function http_request($url, $post_fields = null, $json_fields = false)
+function http_req($url, $post_fields = null, $json_fields = false)
 {
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_URL, $url);
@@ -50,7 +50,7 @@ function github_api($method, $post_data = array())
   }
   
   $url = "https://api.github.com/$method?access_token=" . $_SESSION['github']['access_token'];
-  $http = http_request($url, $post_data, true);
+  $http = http_req($url, $post_data, true);
   
   if ($http->status < 200 || $http->status > 200)
   {
