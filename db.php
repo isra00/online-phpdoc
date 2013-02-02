@@ -21,10 +21,15 @@ function db_insert_repo($service, $location, $lang, $last_changeset)
   
   $stmt = $db_conn->prepare('INSERT INTO repo (service, location, lang, last_changeset, secret) VALUES (?, ?, ?, ?, ?)');
   
-  //$secret is used by GitHub's web hook to authenticate notifications
-  $stmt->bind_param('sssss', $service, $location, $lang, $last_changeset, md5(uniqid(true)));
+  //secret is used by GitHub's web hook to authenticate notifications
+  $secret = md5(uniqid(true));
+  $stmt->bind_param('sssss', $service, $location, $lang, $last_changeset, $secret);
   $stmt->execute();
-  return $stmt->insert_id;
+  
+  return array( 
+    'id_repo' => $stmt->insert_id, 
+    'secret' => $secret
+  );
 }
 
 function db_insert_job($id_repo, $changeset)
