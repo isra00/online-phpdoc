@@ -38,6 +38,8 @@ list($user, $repo) = explode('/', $job['location']);
 /*
  * Grab the latest code
  * @todo Repensar si es necesario el hash del changeset...
+ * @todo Si el pull devuelve "everything up-to-date" y ya hay documentación generada, NO VOLVER A GENERAR
+ * @todo Comprobar si hay changesets más recientes que el que se usó en el último job exitoso de este repo
  */
 $repos_dir = __DIR__ . '/repos';
 $repo_dir = "$repos_dir/$user/$repo";
@@ -66,7 +68,7 @@ if (file_exists($doc_dir))
 }
 
 /** @todo Store in a temporary dir, then remove the old docs if phpdoc returned success, and then move the new ones */
-$cmd = command("phpdoc --extensions php --ignore-symlinks --defaultpackagename $user/$repo -d $repo_dir -t $doc_dir");
+$cmd = command("phpdoc --extensions php --ignore-symlinks --title $user/$repo -d $repo_dir -t $doc_dir");
 
 if (0 == $cmd->return_code)
 {
