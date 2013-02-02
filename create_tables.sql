@@ -7,8 +7,9 @@ CREATE TABLE `repo` (
   `doc_status` enum('waiting','generating','updated','fail') NOT NULL DEFAULT 'waiting',
   `last_changeset` varchar(40) DEFAULT NULL,
   `last_update` datetime DEFAULT NULL,
+  `secret` char(32) NOT NULL,
   PRIMARY KEY (`id_repo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 CREATE TABLE `job` (
   `id_job` int(10) unsigned NOT NULL AUTO_INCREMENT,
