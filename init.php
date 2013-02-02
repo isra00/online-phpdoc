@@ -29,4 +29,6 @@ if (basename($_SERVER['SCRIPT_NAME']) != 'gh-login.php' && basename($_SERVER['SC
 
   //Init DB
   $db_conn = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
+  $mysql = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD);
+  mysql_select_db(MYSQL_DATABASE, $mysql);
 }

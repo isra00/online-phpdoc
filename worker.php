@@ -19,7 +19,8 @@ require 'db.php';
 require 'misc.php';
 
 //Init DB
-$db_conn = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
+$mysql = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD);
+mysql_select_db(MYSQL_DATABASE, $mysql);
 
 $job = db_select_pending_job();
 

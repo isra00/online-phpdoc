@@ -1,6 +1,8 @@
 <?php
 
-define('WEB_ROOT',             'http://' . $_SERVER['HTTP_HOST'] . '/');
+$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'dummy';
+
+define('WEB_ROOT',             "http://$host/");
 define('LOCAL_ROOT',           __DIR__ );
 
 define('GITHUB_CLIENT_ID',     getenv('GITHUB_CLIENT_ID'));

@@ -27,9 +27,9 @@ foreach ($github_repos as &$repo) {
   
   $r['is_tracking'] = false;
   
-  if ($db_repo->num_rows) {
+  if (!empty($db_repo)) {
     $r['is_tracking'] = true;
-    $r = array_merge($r, $db_repo->fetch_assoc());
+    $r = array_merge($r, $db_repo);
     $r['url_docs'] = 'docs/' . $repo['full_name'];
   }
   
