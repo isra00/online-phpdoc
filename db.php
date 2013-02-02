@@ -35,7 +35,7 @@ function db_insert_job($id_repo, $changeset)
   return $stmt->insert_id;
 }
 
-function db_select_first_job()
+function db_select_pending_job()
 {
   global $db_conn;
   
@@ -49,7 +49,7 @@ function db_update_job_status($id_job, $status)
   global $db_conn;
   
   $stmt = $db_conn->prepare('UPDATE job SET status = ?, UPDATED = 0 WHERE id_job = ?');
-  $stmt->bind_param('si', $status, $i d_job);
+  $stmt->bind_param('si', $status, $id_job);
   $stmt->execute();
   return $stmt->affected_rows;
 }
