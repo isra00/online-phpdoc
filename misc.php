@@ -11,7 +11,7 @@
  * @param array $post_fields POST fields to send
  * @return object The HTTP status code (status) and response (response)
  */
-function http_request($url, $post_fields = null)
+function http_request($url, $post_fields = null, $json_fields = false)
 {
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_URL, $url);
@@ -20,7 +20,9 @@ function http_request($url, $post_fields = null)
   if (!empty($post_fields))
   {
     curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($post_fields));
+    
+    $post_data = $json_fields ? json_encode($post_fields) : http_build_query($post_fields);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
   }
   
   $response = curl_exec($curl);
@@ -37,10 +39,10 @@ function http_request($url, $post_fields = null)
  * Simple wrapper for RESTful GitHub API v3
  *
  * @param string $method Method to request (REST resource, without leading /)
- * @param array $params POST fields
+ * @param array $post_data POST data to be sent in JSON
  * @return array Array-decoded JSON response
  */
-function github_api($method, $params = array())
+function github_api($method, $post_data = array())
 {
   if (!isset($_SESSION['github']['access_token']))
   {
@@ -48,9 +50,9 @@ function github_api($method, $params = array())
   }
   
   $url = "https://api.github.com/$method?access_token=" . $_SESSION['github']['access_token'];
-  $http = http_request($url, $params);
+  $http = http_request($url, $post_data, true);
   
-  if ($http->status != 200)
+  if ($http->status < 200 || $http->status > 200)
   {
     return false;
   }

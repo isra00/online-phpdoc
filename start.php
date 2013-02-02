@@ -22,14 +22,27 @@ if ($repo_info['owner']['login'] != $_SESSION['github']['user_data']['login'])
 
 $branch_info = github_api("repos/$repo/branches/master");
 
-if ($id_repo = db_insert_repo('github', $repo, strtolower($repo_info['language']), $branch_info['commit']['sha']))
+if ($inserted_repo = db_insert_repo('github', $repo, strtolower($repo_info['language']), $branch_info['commit']['sha']))
 {
-  if (db_insert_job($id_repo, $branch_info['commit']['sha']))
+  //Create a job for the first docs
+  if (!db_insert_job($inserted_repo['id_repo'], $branch_info['commit']['sha']))
   {
-    header('Location: index.php?notify_new=' . urlencode($repo));
+    die('An error occurred when registrating a job for generating your docs :(');
   }
   
-  die('An error occurred when registrating a job for generating your docs :(');
+  //Declare the web hook so GitHub will notify every push in the repo
+  $resp = github_api("repos/$repo/hooks", array(
+      'name'   => 'web',
+      'active' => true,
+      'events' => array('push'),
+      'config' => array(
+          'url'          => GITHUB_HOOK_URL,
+          'content_type' => 'json',
+          'secret'       => $inserted_repo['secret']
+      )
+  ));
+  
+  header('Location: index.php?notify_new=' . urlencode($repo));
 }
 
 die('An error occurred when registrating your new repo - sorry!');
