@@ -48,7 +48,7 @@ function db_update_job_status($id_job, $status)
 {
   global $db_conn;
   
-  $stmt = $db_conn->prepare('UPDATE job SET status = ?, updated = 0 WHERE id_job = ?');
+  $stmt = $db_conn->prepare('UPDATE job SET status = ?, updated = NOW() WHERE id_job = ?');
   $stmt->bind_param('si', $status, $id_job);
   $stmt->execute();
   return $stmt->affected_rows;
