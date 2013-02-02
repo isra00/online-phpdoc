@@ -45,6 +45,11 @@ list($user, $repo) = explode('/', $job['location']);
 $repos_dir = __DIR__ . '/repos';
 $repo_dir = "$repos_dir/$user/$repo";
 
+if (!file_exists($repos_dir))
+{
+  mkdir($repos_dir);
+}
+
 if (file_exists($repo_dir . '/.git'))
 {
   //If the repo is already cloned, update it
@@ -61,6 +66,11 @@ else
  
 $docs_dir = __DIR__ . '/docs';
 $doc_dir = "$docs_dir/$user/$repo";
+
+if (!file_exists($docs_dir))
+{
+  mkdir($docs_dir);
+}
 
 /** @todo Do not remove the old docs until the new ones are succcesfully generated */
 if (file_exists($doc_dir))
