@@ -75,14 +75,14 @@ if (0 == $cmd->return_code)
   db_update_job_status($job['id_job'], 'done');
   db_update_repo_status($job['id_repo'], 'updated');
   
-  echo 'Succeed job #' . $job['id_job'];
+  echo 'Succeed job #' . $job['id_job'] . "\n";
 }
 else
 {
   db_update_job_status($job['id_job'], 'fail');
   db_update_repo_status($job['id_repo'], 'fail');
   
-  echo 'Failed job #' . $job['id_job'];
+  echo 'Failed job #' . $job['id_job'] . "\n";
 }
 
 exit(0);
