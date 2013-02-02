@@ -18,7 +18,7 @@
   <?php foreach ($repos as $repo) : ?>
     <tr>
       <td>
-        <?php if ($repo['is_tracking']) : ?>
+        <?php if ($repo['is_tracking'] && 'updated' == $repo['doc_status']) : ?>
           <a href="<?php print $repo['url_docs'] ?>"><?php print $repo['name'] ?></a>
         <?php else : ?>
           <?php print $repo['name'] ?>
@@ -26,16 +26,7 @@
         (<?php print $repo['lang'] ?>)
       </td>
       <td>
-        <?php if ($repo['is_tracking']) : ?>
-          <?php print $repo['last_update'] ? 'Generated ' . $repo['last_update'] : 'waiting in the queue' ?>
-        <?php else : ?>
-          Not tracking. 
-          <?php if (strtolower($repo['lang']) != 'php') : ?>
-          <abbr title="Only PHP projects can be tracked by now">Not PHP</abbr>
-          <?php else : ?>
-          <a href="<?php print $repo['url_start'] ?>">Start tracking</a>.
-          <?php endif ?>
-        <?php endif ?>
+        <?php print $repo['status_display'] ?>
       </td>
   <?php endforeach ?>
   </tbody>

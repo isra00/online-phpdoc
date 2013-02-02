@@ -33,6 +33,32 @@ foreach ($github_repos as &$repo) {
     $r['url_docs'] = 'docs/' . $repo['full_name'];
   }
   
+  $r['status_display'] = '<abbr title="Only PHP projects can be tracked by now">Not PHP</abbr>';
+  
+  if ($r['lang'] == 'php')
+  {
+    $r['status_display'] = '<a href="' . $r['url_start'] . '">Start tracking</a>';
+  }
+  
+  if (isset($r['doc_status']))
+  {
+    switch ($r['doc_status'])
+    {
+      case 'waiting':
+        $r['status_display'] = 'Waiting in the queue';
+        break;
+      case 'updated':
+        $r['status_display'] = 'Generated ' . $r['last_update'];
+        break;
+      case 'generating':
+        $r['status_display'] = 'Generating right now';
+        break;
+      case 'fail':
+        $r['status_display'] = '<span class="error">failed</span>';
+        break;
+    }
+  }
+  
   $repos[] = $r;
 }
 

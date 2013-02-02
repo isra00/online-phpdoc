@@ -48,18 +48,18 @@ function db_update_job_status($id_job, $status)
 {
   global $db_conn;
   
-  $stmt = $db_conn->prepare('UPDATE job SET status = ?, UPDATED = 0 WHERE id_job = ?');
+  $stmt = $db_conn->prepare('UPDATE job SET status = ?, updated = 0 WHERE id_job = ?');
   $stmt->bind_param('si', $status, $id_job);
   $stmt->execute();
   return $stmt->affected_rows;
 }
 
-function db_update_repo_status($id_job, $status)
+function db_update_repo_status($id_repo, $status)
 {
   global $db_conn;
   
-  $stmt = $db_conn->prepare('UPDATE job SET status = ?, UPDATED = 0 WHERE id_job = ?');
-  $stmt->bind_param('si', $status, $id_job);
+  $stmt = $db_conn->prepare('UPDATE repo SET doc_status = ?, last_update = NOW() WHERE id_repo = ?');
+  $stmt->bind_param('si', $status, $id_repo);
   $stmt->execute();
   return $stmt->affected_rows;
 }
