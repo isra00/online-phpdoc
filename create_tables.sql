@@ -9,7 +9,7 @@ CREATE TABLE `repo` (
   `last_update` datetime DEFAULT NULL,
   `secret` char(32) NOT NULL,
   PRIMARY KEY (`id_repo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `job` (
   `id_job` int(10) unsigned NOT NULL AUTO_INCREMENT,
