@@ -9,11 +9,17 @@ $repos = array();
 
 foreach ($github_repos as &$repo) {
   /*
-   * Possible status:
-   *  - Not tracking
-   *  - Tracking and up-to-date (succesfully generated docs for the last changeset)
-   *  - Tracking but not up-to-date (no docs or last docs belong to an old changeset)
+   * 'language' JSON attribute does not work sometimes, so we look for languages 
+   * lines stats
    */
+  if ($repo['language'] != 'PHP')
+  {
+    $repo_languages = github_api('repos/' . $repo['full_name'] . '/languages');
+    if (false !== array_search('PHP', array_keys($repo_languages)))
+    {
+      $repo['language'] = 'php';
+    }
+  }
   
   $r = array(
     'service'        => 'github',
