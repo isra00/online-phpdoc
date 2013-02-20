@@ -2,8 +2,6 @@
 <?php include 'header.view.php' ?>
 <?php /** @todo usar el parámetro state para mayor seguridad */ ?>
 
-<?php include 'header.view.php' ?>
-
 <div class="landing hero-unit">
   <h1>Your phpDocs in the cloud</h1>
   <p>Forget about generating and hosting your PHP code documents. <br>
