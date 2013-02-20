@@ -13,15 +13,6 @@
   <link rel="stylesheet" href="/assets/css/bootstrap.css">
   <link rel="stylesheet" href="/assets/css/main.css">
   
-  <style>
-  .header { overflow: hidden; }
-  .notify { padding: 0 1em; }
-  .notify.success { border: 1px solid #be7; background: #f8fff0; }
-  .repo-list td { padding: .2em 2em .2em .1em; }
-  
-  .error { color: red; }
-  </style>
-  
   <script type="text/javascript">
   function trackOutboundLink(link, category, action, label, value) { 
     try { 

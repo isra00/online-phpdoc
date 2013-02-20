@@ -1,3 +1,11 @@
+
+.main {
+  margin: 1em auto;
+  width: 80em;
+}
+
+/*********************************** LANDING **********************************/
+
 .landing {
   text-align: center;
 }
@@ -11,4 +19,35 @@
   display: inline-block;
   height: 32px;
   line-height: 32px;
+}
+
+/*********************************** GENERAL **********************************/
+
+.header {
+  overflow: hidden;
+}
+
+/********************************** REPO LIST *********************************/
+
+.repo-list {
+  width: auto;
+  margin: 1em auto;
+}
+.repo-list caption {
+  padding: 2em 0;
+}
+  .repo-list h5 {
+    display: inline-block;
+    margin: 0;
+    font-size: 1.4em;
+  }
+  .repo-list .repo {
+    padding-right: 3em;
+  }
+
+
+/*********************************** GENERIC **********************************/
+
+.error { 
+  color: red; 
 }
