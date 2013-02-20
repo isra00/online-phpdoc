@@ -1,0 +1,14 @@
+.landing {
+  text-align: center;
+}
+  .landing p {
+    margin: 2em 0;
+  }
+
+.github-login span {
+  background: url(../img/github-32.png) left center no-repeat;
+  padding-left: 45px;
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+}
