@@ -17,6 +17,7 @@ if (basename($_SERVER['SCRIPT_NAME']) != 'gh-login.php' && basename($_SERVER['SC
 {
   if (empty($_SESSION['github']['access_token']))
   {
+    header("HTTP/1.1 301 Moved Permanently"); //This helps SEO
     header('Location: gh-login.php');
     die;
   }
