@@ -14,10 +14,12 @@ foreach ($github_repos as &$repo) {
    */
   if ($repo['language'] != 'PHP')
   {
-    $repo_languages = github_api('repos/' . $repo['full_name'] . '/languages');
-    if (false !== array_search('PHP', array_keys($repo_languages)))
+    if ($repo_languages = github_api('repos/' . $repo['full_name'] . '/languages'))
     {
-      $repo['language'] = 'php';
+      if (false !== array_search('PHP', array_keys($repo_languages)))
+      {
+        $repo['language'] = 'php';
+      }
     }
   }
   
