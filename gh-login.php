@@ -1,4 +1,5 @@
 <?php include 'init.php' ?>
+<?php include 'header.view.php' ?>
 <?php /** @todo usar el parámetro state para mayor seguridad */ ?>
 
 <?php include 'header.view.php' ?>
