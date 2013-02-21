@@ -45,7 +45,7 @@ foreach ($github_repos as &$repo) {
   
   if ($r['lang'] == 'php')
   {
-    $r['status_display'] = '<a href="' . $r['url_start'] . '">Start tracking</a>';
+    $r['status_display'] = '<a class="btn btn-primary" href="' . $r['url_start'] . '">Start tracking</a>';
   }
   
   if (isset($r['doc_status']))
