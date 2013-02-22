@@ -25,6 +25,9 @@
 .header {
   overflow: hidden;
 }
+.footer {
+  text-align: center;
+}
 
 /********************************** REPO LIST *********************************/
 
