@@ -12,3 +12,5 @@
     </a>
   </p>
 </div>
+
+<?php include 'footer.view.php' ?>
