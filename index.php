@@ -41,7 +41,7 @@ foreach ($github_repos as &$repo) {
     $r['url_docs'] = 'docs/' . $repo['full_name'];
   }
   
-  $r['status_display'] = '<abbr title="Only PHP projects can be tracked by now">Not PHP</abbr>';
+  $r['status_display'] = '<abbr title="Only PHP projects can be tracked by now">Not supported</abbr>';
   
   if ($r['lang'] == 'php')
   {
