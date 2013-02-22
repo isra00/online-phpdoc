@@ -30,11 +30,6 @@ mysql_select_db(MYSQL_DATABASE, $mysql);
 
 $hook_data = json_decode(file_get_contents('php://input'), true);
 
-if (empty($hook_data))
-{
-  write_log("Invalid input: $raw_post", true);
-}
-
 $slices = explode('/', $hook_data['repository']['url']);
 $location = $slices[count($slices) - 2] . '/' . $slices[count($slices) - 1];
 
