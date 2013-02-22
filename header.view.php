@@ -7,7 +7,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>phpDoc in the cloud - generate phpDoc from GitHub repos</title>
-  <meta name="description" content="Generate and host your phpDoc code documentation on the cloud">
+  <meta name="description" content="Generate and host your phpDoc code documentation in the cloud">
+  <meta name="keywords" content="phpdoc, phpdocs, phpdocumentor, continuous documentation, continuous integration">
+
   <meta name="viewport" content="width=device-width">
 
   <link rel="stylesheet" href="/assets/css/bootstrap.css">
