@@ -59,7 +59,7 @@ foreach ($github_repos as &$repo) {
         $r['status_display'] = 'Generated ' . $r['last_update'];
         break;
       case 'generating':
-        $r['status_display'] = 'Generating right now';
+        $r['status_display'] = '<span class="badge badge-info">Generating right now</span>';
         break;
       case 'fail':
         $r['status_display'] = '<span class="error">failed</span>';
