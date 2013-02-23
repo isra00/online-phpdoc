@@ -1,0 +1,6 @@
+*~
+tmp
+docs/*
+repos/*
+!repos/.htaccess
+/nbproject/private/
