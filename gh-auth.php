@@ -12,19 +12,14 @@ if (!isset($_GET['code'])) {
   //Page has been called directly or without the required params. Throw error or redirect.
 }
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://github.com/login/oauth/access_token');
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array(
+$result = http_req('https://github.com/login/oauth/access_token', array(
   'client_id'     => GITHUB_CLIENT_ID,
   'client_secret' => GITHUB_CLIENT_SECRET,
   'code'          => $_GET['code']
-)));
-$result = curl_exec($ch);
+));
 
 $data = array();
-parse_str($result, $data);
+parse_str($result->response, $data);
 
 $_SESSION['github']['access_token'] = $data['access_token'];
 
