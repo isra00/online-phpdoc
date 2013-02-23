@@ -9,9 +9,10 @@
  *
  * @param string $url The URL to request
  * @param array $post_fields POST fields to send
+ * @param boolean $json_payload Whether the payload is JSON formatted or not
  * @return object The HTTP status code (status) and response (response)
  */
-function http_req($url, $post_fields = null, $json_fields = false)
+function http_req($url, $post_fields = null, $json_payload = false)
 {
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_URL, $url);
@@ -21,7 +22,7 @@ function http_req($url, $post_fields = null, $json_fields = false)
   {
     curl_setopt($curl, CURLOPT_POST, true);
     
-    $post_data = $json_fields ? json_encode($post_fields) : http_build_query($post_fields);
+    $post_data = $json_payload ? json_encode($post_fields) : http_build_query($post_fields);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
   }
   
