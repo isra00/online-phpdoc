@@ -16,9 +16,9 @@
   <link rel="stylesheet" href="/assets/css/main.css">
   
   <script type="text/javascript">
-  function trackOutboundLink(link, category, action, label, value) { 
+  function trackOutboundLink(link, category, action) { 
     try { 
-      _gaq.push(['_trackEvent', category , action, label, value]); 
+      _gaq.push(['_trackEvent', category , action]); 
     } catch(err){}
 
     setTimeout(function() {

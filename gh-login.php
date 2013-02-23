@@ -8,8 +8,8 @@
   <p>Forget about generating and hosting your PHP code documents. <br>
     Just <strong>one click</strong> and they will be generated automatically from your GitHub repositories.</p>
   <p>
-    <a class="btn btn-primary btn-large github-login" href="https://github.com/login/oauth/authorize?client_id=<?php print GITHUB_CLIENT_ID ?>&scope=public_repo" onclick="trackOutboundLink(this, 'Clicks', 'github-login', 'landing', 'hero-button'); return false;">
-      <span>Log-in with GitHub</span>
+    <a class="btn btn-primary btn-large github-login" href="https://github.com/login/oauth/authorize?client_id=<?php print GITHUB_CLIENT_ID ?>&scope=public_repo" onclick="trackOutboundLink(this, 'Clicks', 'github-login'); return false;">
+      <span>Choose your repositories</span>
     </a>
   </p>
 </div>
