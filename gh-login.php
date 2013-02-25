@@ -1,4 +1,5 @@
 <?php include 'init.php' ?>
+<?php $last_repos = db_get_last_jobs() ?>
 <?php include 'header.view.php' ?>
 <?php /** @todo usar el parámetro state para mayor seguridad */ ?>
 
@@ -12,6 +13,16 @@
       <span>Choose your repositories</span>
     </a>
   </p>
-</div>
 
+  <?php if (!empty($last_repos)) : ?>
+  <h4>Latest documented projects</h4>
+  <ul class="recent">
+  <?php foreach ($last_repos as $r) : ?>
+    <li><a href="/docs/<?php echo $r ?>"><?php echo $r ?></a></li>
+  <?php endforeach ?>
+  </ul>
+  <?php endif ?>
+
+</div>
+<!--  <?php print_r(db_get_last_jobs()) ?> -->
 <?php include 'footer.view.php' ?>
