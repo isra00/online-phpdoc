@@ -24,5 +24,5 @@
   <?php endif ?>
 
 </div>
-<!--  <?php print_r(db_get_last_jobs()) ?> -->
+
 <?php include 'footer.view.php' ?>
