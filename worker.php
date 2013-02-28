@@ -29,7 +29,7 @@ if (!$job)
   exit(1);
 }
 
-echo "Starting job #" . $job['id_job'] . "...\n";
+echo "\nStarting job #" . $job['id_job'] . "...\n";
 
 db_update_job_status($job['id_job'], 'generating');
 db_update_repo_status($job['id_repo'], 'generating');
@@ -83,7 +83,7 @@ $cmd = command("phpdoc --extensions php --ignore-symlinks --title $user/$repo -d
 
 if (0 == $cmd->return_code)
 {
-  db_update_job_status($job['id_job'], 'done');
+  db_update_job_status($job['id_job'], 'done', join("\n", $cmd->output));
   db_update_repo_status($job['id_repo'], 'updated');
   
   echo 'Succeed job #' . $job['id_job'] . "\n";

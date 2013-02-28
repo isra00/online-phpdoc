@@ -44,10 +44,11 @@ function db_select_pending_job()
   return mysql_fetch_assoc($res);
 }
 
-function db_update_job_status($id_job, $status)
+function db_update_job_status($id_job, $status, $output=null )
 {
-  mysql_query(sprintf("UPDATE job SET status = '%s', updated = NOW() WHERE id_job = '%d'",
+  mysql_query(sprintf("UPDATE job SET status = '%s', updated = NOW(), output = '%s' WHERE id_job = '%d'",
           mysql_real_escape_string($status),
+          mysql_real_escape_string($output),
           mysql_real_escape_string($id_job)));
   return mysql_affected_rows();
 }
@@ -59,3 +60,24 @@ function db_update_repo_status($id_repo, $status)
           mysql_real_escape_string($id_repo)));
   return mysql_affected_rows();
 }
+
+/**
+ * Fetch the last 3 successfully generated jobs
+ */
+function db_get_last_jobs()
+{
+  $res = mysql_query("SELECT DISTINCT location FROM job
+                              JOIN repo ON job.id_repo = repo.id_repo AND repo.doc_status = 'updated' AND repo.service = 'github'
+                              ORDER BY job.created DESC
+                              LIMIT 3");
+
+  $repos = array();
+
+  while ($row = mysql_fetch_assoc($res))
+  {
+    $repos[] = $row['location'];
+  }
+
+  return $repos;
+}
+
