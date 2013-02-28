@@ -2,7 +2,7 @@
 <?php include 'header.view.php' ?>
 <?php /** @todo usar el parámetro state para mayor seguridad */ ?>
 
-<a href="https://github.com/isra00/online-phpdoc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+<a href="https://github.com/isra00/online-phpdoc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="/assets/img/github-forkme.png" alt="Fork me on GitHub"></a>
 <div class="landing hero-unit">
   <h1>Your phpDocs in the cloud</h1>
   <p>Forget about generating and hosting your PHP code documents. <br>
