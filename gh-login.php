@@ -5,7 +5,7 @@
 
 <a href="https://github.com/isra00/online-phpdoc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="/assets/img/github-forkme.png" alt="Fork me on GitHub"></a>
 <div class="landing hero-unit">
-  <h1>Your phpDocs in the cloud</h1>
+  <h1>Start doing continuous documentation today</h1>
   <p>Forget about generating and hosting your PHP code documents. <br>
     Just <strong>one click</strong> and they will be generated automatically from your GitHub repositories.</p>
   <p>
