@@ -22,7 +22,7 @@ foreach ($github_repos as &$repo) {
       }
     }
   }
-  
+
   $r = array(
     'service'        => 'github',
     'location'       => $repo['full_name'],
@@ -30,24 +30,24 @@ foreach ($github_repos as &$repo) {
     'lang'           => strtolower($repo['language']),
     'url_start'      => 'start.php?' . http_build_query(array('service' => 'github', 'location' => $repo['full_name'])),
   );
-  
+
   $db_repo = db_search_repo('github', $repo['full_name']);
-  
+
   $r['is_tracking'] = false;
-  
+
   if (!empty($db_repo)) {
     $r['is_tracking'] = true;
     $r = array_merge($r, $db_repo);
     $r['url_docs'] = 'docs/' . $repo['full_name'];
   }
-  
+
   $r['status_display'] = '<abbr title="Only PHP projects can be tracked by now">Not supported</abbr>';
-  
+
   if ($r['lang'] == 'php')
   {
     $r['status_display'] = '<a class="btn btn-primary" href="' . $r['url_start'] . '">Start tracking</a>';
   }
-  
+
   if (isset($r['doc_status']))
   {
     switch ($r['doc_status'])
@@ -66,8 +66,20 @@ foreach ($github_repos as &$repo) {
         break;
     }
   }
-  
+
   $repos[] = $r;
 }
+
+// Order by repo name, tracked repos first
+usort($repos, function($a, $b) {
+  if ($a['is_tracking'] == $b['is_tracking'])
+  {
+    return strcasecmp($a['location'], $b['location']);
+  }
+  else
+  {
+    return $a['is_tracking'] ? -1 : 1;
+  }
+});
 
 include 'index.view.php';
