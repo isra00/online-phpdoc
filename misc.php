@@ -17,6 +17,7 @@ function http_req($url, $post_fields = null, $json_payload = false)
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_URL, $url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_USERAGENT, 'github-phpdoc');
   
   if (!empty($post_fields))
   {
